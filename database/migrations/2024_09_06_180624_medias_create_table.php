@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('medias', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            // $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('FileName');
             $table->string('FileType');
             $table->string('FilePath');
@@ -25,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('Medias');
+        Schema::dropIfExists('medias');
     }
 };
