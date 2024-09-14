@@ -11,8 +11,9 @@
                         <a href="{{route('Media.index')}}" class="btn btn-outline-danger btn-sm float-sm-end">Volver</a>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('Media.Guardar')}}" method="POST">
+                        <form action="{{route('Media.Guardar')}}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            
                             <div class="row">
                                 <div class="col-md-12 col-lg-12">
                                     <div class="mb-3">

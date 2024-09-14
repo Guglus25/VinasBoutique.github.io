@@ -1,16 +1,20 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Countrie;
 use App\Models\Medias;
+use Database\Seeders\CountrieSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    //return view('Admin.Media.indexMedia');
+
+    return redirect()->route('Media.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -46,28 +50,44 @@ Route::middleware('auth')->group(function () {
         $media = new Medias();
         $media->FileName = $request->input('FileName');
         $media->FileType = $request->input('FileType');
-        $media->filePath = $request->input('FilePath');
+        //$media->filePath = $request->input('FilePath');
         $media->created_at = date('Y-m-d H:i:s');
         $media->updated_at = date('Y-m-d H:i:s');
 
+   
+      
         // Manejar el archivo subido
         if ($request->hasFile('FilePath')) {
             $file = $request->file('FilePath');
-            
-            // Guardar el archivo en el sistema de archivos (por defecto en `storage/app/uploads`)
-            $filePath = $file->store('uploads');
-
+            $filename=$file->getClientOriginalName();
+            //Ruta para guardar
+            $filePath = 'images/';
+            // Guardar el archivo en el sistema 
+            $cargafolder = $request->file('FilePath')->move($filePath, $filename);
             // Asignar la ruta del archivo al modelo
-            $media->filePath = $filePath; // Guardas la ruta relativa del archivo en la BD
+            $media->filePath = $filePath .  $filename; // Guardas la ruta relativa del archivo en la BD
+
         }
-        error_log($media->filePath );
+
         $media->save();
-        return redirect()->route('Media.index')->with('success', 'la Media se guardo correctamente {{$media->filePath}}');
+        return redirect()->route('Media.index')->with('success', 'la Media se guardo correctamente.');
     })->name('Media.Guardar');
 
     Route::delete('/Media/{id}', function ($id) {
         $media = Medias::findOrFail($id);
         $media->delete();
-        return redirect()->route('Media.index')->with('success', 'La Media se elimino correctamente');
+        return redirect()->route('Media.index')->with('success', 'La Media se elimino correctamente.');
     })->name('Media.Eliminar');
+
+
+    // RUTAS DE LOS PAISES
+    Route::get('/Pais', function () {
+        $paises = Countrie::all();
+        return view('Admin.Paises.indexPaises',compact('paises'));
+    })->name('Pais.index');
+
+    Route::get('/Pais/Create', function () {
+        return view('Admin.Paises.CreatePaises');
+    })->name('Pais.Create');
+
 });

@@ -26,7 +26,7 @@
 
               <div class="carousel-inner">
                 <div class="carousel-item carousel-item-banner active">
-                  <img src="{{url()}}" class="d-block w-100 carousel-img" alt="...">
+                  <img src="images/Imagen1.png" class="d-block w-100 carousel-img" alt="...">
                 </div>
                 <div class="carousel-item carousel-item-banner">
                   <img src="imagen/C2.jpg" class="d-block w-100 carousel-img" alt="...">
@@ -50,8 +50,12 @@
         </div>
       </main>
 
-      <div class="sidebar border border-right col-md-4 col-lg-4 p-0 bg-body-tertiary">
+      <div class="sidebar border border-right col-md-4 col-lg-4 p-0 bg-body-tertiary position-relative">
         <h1>paises y ciudades</h1>
+        <a href="{{ route('login') }}"
+          class=" position-absolute bottom-0 end-0 rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+          Log in
+        </a>
       </div>
     </div>
   </div>
