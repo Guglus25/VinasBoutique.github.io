@@ -26,7 +26,7 @@
 
               <div class="carousel-inner">
                 <div class="carousel-item carousel-item-banner active">
-                  <img src="imagen/C1.jpg" class="d-block w-100 carousel-img" alt="...">
+                  <img src="{{url()}}" class="d-block w-100 carousel-img" alt="...">
                 </div>
                 <div class="carousel-item carousel-item-banner">
                   <img src="imagen/C2.jpg" class="d-block w-100 carousel-img" alt="...">
