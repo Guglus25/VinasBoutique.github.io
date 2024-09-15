@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Countrie;
 use App\Models\Medias;
@@ -9,7 +10,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $images = Medias::all();
-    return view('index', compact('images'));
+    $paises = Countrie::all();
+    return view('index', compact('images', 'paises'));
 });
 
 Route::get('/dashboard', function () {
@@ -109,5 +111,9 @@ Route::middleware('auth')->group(function () {
         $countrie->delete();
         return redirect()->route('Pais.index')->with('success', 'El pais se elimino correctamente.');
     })->name('Pais.Eliminar');
+
+
+    // RUTAS DE LOCALIDADES    
+    Route::get('/get-user-details/{id}', [LocationController, 'getLocations'])->name('getUserDetails');
 
 });

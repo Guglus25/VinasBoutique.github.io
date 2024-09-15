@@ -17,6 +17,23 @@ class LocationController extends Controller
         //
     }
 
+    public function getLocations($id)
+    {
+        // Obtener detalles del usuario por ID
+        $locations = Location::where('countrie_id',$id);
+
+        if ($locations) {
+            return response()->json($locations);
+        } else {
+            return response()->json(['error' => 'Usuario no encontrado'], 404);
+        }
+    }
+
+
+
+
+
+
     /**
      * Show the form for creating a new resource.
      */

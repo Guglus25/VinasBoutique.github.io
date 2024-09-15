@@ -92,22 +92,16 @@
     </div>
     <div id="layoutSidenav_nav1">
       <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
-        <div class="sb-sidenav-menu">
-          <div class="nav">
-            <a class="nav-link" href="{{route('dashboard')}}">
-              <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-              Dashboard
-            </a>
-            <a class="nav-link" href="{{route('Media.index')}}">
-              <div class="sb-nav-link-icon"><i class="fa-solid fa-photo-film"></i></div>
-              Media
-            </a>
-            <a class="nav-link" href="{{route('Pais.index')}}">
-              <div class="sb-nav-link-icon"><i class="fa-solid fa-earth-americas"></i></div>
-              Paises
-            </a>
+        <div class="sb-sidenav-menu px-4">
+          @foreach ($paises as $pais)
+        <p>
+        <h4>{{$pais->Name}}</h4>
+        <ul class="list-unstyled">
+        <li>This is a list.</li>
+        </ul>
+        </p>
 
-          </div>
+      @endforeach
         </div>
 
       </nav>
