@@ -6,6 +6,8 @@ use App\Models\Location;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreLocationRequest;
 use App\Http\Requests\UpdateLocationRequest;
+use Illuminate\Http\Request;
+
 
 class LocationController extends Controller
 {
@@ -19,8 +21,10 @@ class LocationController extends Controller
 
     public function getLocations($id)
     {
+
         // Obtener detalles del usuario por ID
-        $locations = Location::where('countrie_id',$id);
+        $locations = Location::where('countrie_id', $id)->orderBy('order')->get();
+        //$locations = Location::all();
 
         if ($locations) {
             return response()->json($locations);
@@ -30,16 +34,29 @@ class LocationController extends Controller
     }
 
 
-
-
-
-
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $location = new Location();
+        $location->countrie_id = $request->input('countrie_id');
+        $location->Order = $request->input('Order');
+        $location->Name = $request->input('Name');
+        $location->Url = "";
+        $location->created_at = date('Y-m-d H:i:s');
+        $location->updated_at = date('Y-m-d H:i:s');
+
+        $location->save();
+
+        $locations = Location::where('countrie_id', $location->countrie_id)->orderBy('order')->get();
+        //$locations = Location::all();
+
+        if ($locations) {
+            return response()->json($locations);
+        } else {
+            return response()->json(['error' => 'Usuario no encontrado'], 404);
+        }
     }
 
     /**
@@ -77,8 +94,18 @@ class LocationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Location $location)
+    public function destroy($id, $countrie_id)
     {
-        //
+        $location = Location::findOrFail($id);
+        $location->delete();
+
+        $locations = Location::where('countrie_id', $countrie_id)->orderBy('order')->get();
+        //$locations = Location::all();
+
+        if ($locations) {
+            return response()->json($locations);
+        } else {
+            return response()->json(['error' => 'Usuario no encontrado'], 404);
+        }
     }
 }

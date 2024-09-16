@@ -42,7 +42,7 @@
     <div id="layoutSidenav_contentindex">
       <main>
         <div class="container-fluid px-4 my-4">
-          <div id="myCarousel" class="carousel slide " data-bs-ride="carousel">
+          <div id="myCarousel" class="carousel carousel-dark slide " data-bs-ride="carousel">
             <div class="carousel-indicators">
 
 
@@ -97,18 +97,22 @@
         <p>
         <h4>{{$pais->Name}}</h4>
         <ul class="list-unstyled">
-        <li>This is a list.</li>
+          @foreach ($pais->location as $locati )
+          <li>{{$locati->Name}}</li>
+          @endforeach
+       
         </ul>
         </p>
 
       @endforeach
+      
         </div>
 
       </nav>
-      <a href="{{ route('login') }}" style="font-size: 30px;"
+      <!-- <a href="{{ route('login') }}" style="font-size: 30px;"
         class=" position-absolute bottom-0 end-0 rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
         <i class="fa-regular fa-circle-user"></i>
-      </a>
+      </a> -->
     </div>
   </div>
 

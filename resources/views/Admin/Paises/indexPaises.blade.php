@@ -39,7 +39,7 @@
                                 </td>
                                 <td>
                                     <a href="" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#ModalLocalidades">Localidades</a>
+                                        data-bs-target="#ModalLocalidades" data-id="{{ $pais }}">Localidades</a>
 
                                     <a href="javascript:document.getElementById('media-{{$pais->id}}').submit()"
                                         class="btn btn-outline-danger btn-sm">Eliminar</a>
@@ -102,41 +102,65 @@
 
 <!-- Modal Localidades -->
 <div class="modal fade" id="ModalLocalidades" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Localidades del pais </h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Localidades del pais <span id="namePais"
+                        style="text-decoration: underline;"></span> </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{route('Pais.Guardar')}}" method="POST" enctype="multipart/form-data">
-                    @csrf
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <form id="FormLocal" method="POST"  >
+                            @csrf
 
-                    <div class="row">
-                        <div class="col-md-4 col-lg-4">
-                            <div class="mb-3">
-                                <label for="Order" class="form-label">Orden</label>
-                                <input type="text" class="form-control" id="Order" name="Order">
+                            <div class="row">
+                                <div class="col-md-2 col-lg-2">
+                                    <div class="mb-3">
+                                    <input type="hidden" class="form-control" id="countrie_id" name="countrie_id">
+                                        <label for="Order" class="form-label">Orden</label>
+                                        <input type="text" class="form-control" id="Order" name="Order">
+                                    </div>
+
+                                </div>
+                                <div class="col-md-10 col-lg-10">
+                                    <div class="mb-3">
+                                        <label for="Name" class="form-label">Nombre de la localidad</label>
+                                        <input type="text" class="form-control" id="Name" name="Name">
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 col-lg-12">
+                                    <button type="submit" class="btn btn-outline-primary btn-md">Guardar</button>
+                                    
+                                </div>
                             </div>
-
-                        </div>
-                        <div class="col-md-8 col-lg-8">
-                            <div class="mb-3">
-                                <label for="Name" class="form-label">Nombre del archivo</label>
-                                <input type="text" class="form-control" id="Name" name="Name">
-                            </div>
-
-                        </div>
-                        <div class="col-md-12 col-lg-12">
-                            <button type="submit" class="btn btn-outline-primary btn-md">Guardar</button>
-
-                        </div>
+                        </form>
                     </div>
-                </form>
+                    <div class="col-md-12 col-lg-12">
+                        <table class="table" id="locationTable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Orden</th>
+                                    <th scope="col">Localidad</th>
+                                    <th style="width:300px" scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
             </div>
 
         </div>
     </div>
 </div>
+
 
 @endsection

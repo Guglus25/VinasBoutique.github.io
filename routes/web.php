@@ -3,6 +3,7 @@
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Countrie;
+use App\Models\Location;
 use App\Models\Medias;
 use Database\Seeders\CountrieSeeder;
 use Illuminate\Http\Request;
@@ -11,7 +12,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $images = Medias::all();
     $paises = Countrie::all();
-    return view('index', compact('images', 'paises'));
+    $locations = Location::all();
+    return view('index', compact('images', 'paises', 'locations'));
 });
 
 Route::get('/dashboard', function () {
@@ -114,6 +116,9 @@ Route::middleware('auth')->group(function () {
 
 
     // RUTAS DE LOCALIDADES    
-    Route::get('/get-user-details/{id}', [LocationController, 'getLocations'])->name('getUserDetails');
+    Route::get('/Localidad/{id}', [LocationController::class, 'getLocations'])->name('getLocations');
 
+    Route::post('/Localidad/Guardar', [LocationController::class, 'create']);
+
+    Route::delete('/Localidad/Eliminar/{id}/{countrie_id}', [LocationController::class, 'destroy']);
 });
