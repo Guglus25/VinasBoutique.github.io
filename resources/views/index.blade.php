@@ -97,18 +97,21 @@
         <p>
         <h4>{{$pais->Name}}</h4>
         <ul class="list-unstyled">
-          @foreach ($pais->location as $locati )
-          <li>{{$locati->Name}}</li>
-          @endforeach
-       
+        @foreach ($pais->location as $locati)
+      <li>{{$locati->Name}}</li>
+    @endforeach
+
         </ul>
         </p>
 
       @endforeach
-      
+          <div class="d-flex justify-content-center">
+            <img src="images/viñas-boutique.png" class="d-block w-50 carousel-img" alt="...">
+          </div>
         </div>
 
       </nav>
+
       <!-- <a href="{{ route('login') }}" style="font-size: 30px;"
         class=" position-absolute bottom-0 end-0 rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
         <i class="fa-regular fa-circle-user"></i>
