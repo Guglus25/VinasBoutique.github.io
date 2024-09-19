@@ -16,81 +16,58 @@
 </head>
 
 <body class="">
-  <!-- <div class="container-fluid">
-    <div class="row">
-      <main class="col-md-8 col-lg-8 ms-sm-auto px-md-4">
-        <div class="row">
-          <div class="col-md-8 col-lg-8">
-            
-          </div>
-          <div class="col-md-4 col-lg-4"></div>
-        </div>
-      </main>
-
-      <div class="sidebar border border-right col-md-4 col-lg-4 p-0 bg-body-tertiary position-relative">
-        <h1>paises y ciudades</h1>
-        <a href="{{ route('login') }}"
-          class=" position-absolute bottom-0 end-0 rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-          Log in
-        </a>
-      </div>
-    </div>
-  </div> -->
-
   <div id="layoutSidenav">
-
-    <div id="layoutSidenav_contentindex">
+    <div class="row">
+      <div class="col-xs-12 col-md-8 col-lg-8">
+      <div id="layoutSidenav_contentindex">
       <main>
-        <div class="container-fluid px-4 my-4">
-          <div id="myCarousel" class="carousel carousel-dark slide " data-bs-ride="carousel">
-            <div class="carousel-indicators">
+              <div class="container-fluid px-4 my-4">
+                <div id="myCarousel" class="carousel carousel-dark slide " data-bs-ride="carousel">
+                  <div class="carousel-indicators">
 
+                    @foreach ($images as $image)
+                      @if ($loop->index == 0)
+                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{$loop->index}}" class="active"
+                        aria-current="true" aria-label="Slide {{$loop->index}}"></button>
+                      @else
+                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{$loop->index}}" aria-current="true"
+                        aria-label="Slide {{$loop->index}}"></button>
+                      @endif
 
+                    @endforeach              
+                  </div>
 
-              @foreach ($images as $image)
-          @if ($loop->index == 0)
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{$loop->index}}" class="active"
-        aria-current="true" aria-label="Slide {{$loop->index}}"></button>
-      @else
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{$loop->index}}" aria-current="true"
-      aria-label="Slide {{$loop->index}}"></button>
-    @endif
+                  <div class="carousel-inner">
+                    @foreach ($images as $image)
+                      @if ($loop->index == 0)
+                        <div class="carousel-item carousel-item-banner active">
+                        <img src="{{$image->FilePath}}" class="d-block w-100 carousel-img" alt="...">
+                        </div>
+            
+                      @else
+                        <div class="carousel-item carousel-item-banner ">
+                        <img src="{{$image->FilePath}}" class="d-block w-100 carousel-img" alt="...">
+                        </div>
+                      @endif
+                    @endforeach
+                  </div>
 
-        @endforeach
-
-              <!-- <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
-                aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
-            </div>
-
-            <div class="carousel-inner">
-              @foreach ($images as $image)
-          @if ($loop->index == 0)
-        <div class="carousel-item carousel-item-banner active">
-        <img src="{{$image->FilePath}}" class="d-block w-100 carousel-img" alt="...">
-        </div>
-      @else
-      <div class="carousel-item carousel-item-banner ">
-      <img src="{{$image->FilePath}}" class="d-block w-100 carousel-img" alt="...">
-      </div>
-    @endif
-        @endforeach
-            </div>
-
-            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-        </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+              
       </main>
     </div>
-    <div id="layoutSidenav_nav1">
+      </div>
+      <div class="col-xs-12 col-md-4 col-lg-4">
+      <div id="layoutSidenav_nav1">
       <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
         <div class="sb-sidenav-menu px-4">
           @foreach ($paises as $pais)
@@ -114,6 +91,10 @@
         <i class="fa-regular fa-circle-user"></i>
       </a> -->
     </div>
+      </div>
+    </div>
+    
+    
   </div>
 
 
