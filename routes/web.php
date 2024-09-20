@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $images = Medias::all();
-    $paises = Countrie::all();
+    $paises = Countrie::all();    
     $locations = Location::all();
     return view('index', compact('images', 'paises', 'locations'));
 });
@@ -53,9 +53,14 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/Media', function (Request $request) {
         $media = new Medias();
+
+
         $media->user_id = auth()->user()->id;
-        $media->FileName = $request->input('FileName');
-        $media->FileType = $request->input('FileType');
+        $media->FileName = $request->input('FileName','');
+        $media->FileType = $request->input('FileType','');
+        $media->FileCopyright = $request->input('FileCopyright','');
+        $media->FileContact = $request->input('FileContact','');
+        
         //$media->filePath = $request->input('FilePath');
         $media->created_at = date('Y-m-d H:i:s');
         $media->updated_at = date('Y-m-d H:i:s');
@@ -100,7 +105,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/Pais', function (Request $request) {
         $countrie = new Countrie();
         $countrie->Order = $request->input('Order');
-        $countrie->Name = $request->input('Name');
+        $countrie->Name = strtoupper($request->input('Name'));
         $countrie->created_at = date('Y-m-d H:i:s');
         $countrie->updated_at = date('Y-m-d H:i:s');
 

@@ -16,6 +16,8 @@ return new class extends Migration {
             $table->string('FileName');
             $table->string('FileType');
             $table->string('FilePath');
+            $table->string('FileCopyright')->nullable();
+            $table->string('FileContact')->nullable();
             $table->timestamps();
         });
     }

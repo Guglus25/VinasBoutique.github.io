@@ -39,6 +39,20 @@
                                     </div>                                   
                                 </div>
                                 <div class="col-md-12 col-lg-12">
+                                    <div class="mb-3">
+                                        <label for="FileCopyright" class="form-label">Información Copyright</label>
+                                        <input type="text" class="form-control" id="FileCopyright" name="FileCopyright">
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="mb-3">
+                                        <label for="FileContact" class="form-label">Contacto</label>
+                                        <input type="text" class="form-control" id="FileContact" name="FileContact">
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 col-lg-12">
                                     <button type="submit" class="btn btn-outline-primary btn-md">Guardar</button>
 
                                 </div>
