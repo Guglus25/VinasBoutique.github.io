@@ -22,9 +22,9 @@
 
 <body class="">
   <div id="">
-    <div class="row">
+    <div class="row g-0 layoutSidenav">
       <div class="col-xs-12 col-md-9 col-lg-9">
-        <div id="layoutSidenav_contentindex">
+        <div id="layoutSidenav_content">
           <main>
             <div class="container-fluid px-4 my-4">
               <div id="myCarousel" class="carousel carousel-dark slide " data-bs-ride="carousel">
@@ -91,9 +91,10 @@
         </div>
       </div>
       <div class="col-xs-12 col-md-3 col-lg-3">
-        <div id="layoutSidenav_nav1">
+        <div id="layoutSidenav_nav">
           <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
-            <div class="sb-sidenav-menu px-4">
+            <div class="sb-sidenav-menu px-4  ">
+            <div class="">
               @foreach ($paises as $pais)
           <p>
 
@@ -108,8 +109,9 @@
 
         @endforeach
               <div class="d-flex justify-content-center">
-                <img src="images/viñas-boutique.png" class="d-block w-50 carousel-img" alt="...">
+                <img src="images/vinas-boutique.png" class="d-block w-50 carousel-img" alt="...">
               </div>
+            </div>
             </div>
 
           </nav>
